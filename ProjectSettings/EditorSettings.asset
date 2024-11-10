@@ -5,11 +5,7 @@ EditorSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 13
   m_SerializationMode: 2
-<<<<<<< HEAD
-  m_LineEndingsForNewScripts: 2
-=======
   m_LineEndingsForNewScripts: 0
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f
   m_DefaultBehaviorMode: 0
   m_PrefabRegularEnvironment: {fileID: 0}
   m_PrefabUIEnvironment: {fileID: 0}
@@ -21,11 +17,7 @@ EditorSettings:
   m_EtcTextureFastCompressor: 1
   m_EtcTextureNormalCompressor: 2
   m_EtcTextureBestCompressor: 4
-<<<<<<< HEAD
-  m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd;asmdef;asmref;rsp;java;cpp;c;mm;m;h
-=======
   m_ProjectGenerationIncludedExtensions: txt;xml;fnt;cd;asmdef;rsp;asmref
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f
   m_ProjectGenerationRootNamespace: 
   m_EnableTextureStreamingInEditMode: 1
   m_EnableTextureStreamingInPlayMode: 1

@@ -2,11 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-<<<<<<< HEAD
-  serializedVersion: 3
-=======
   serializedVersion: 2
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f
   tags: []
   layers:
   - Default
@@ -47,8 +43,6 @@ TagManager:
     locked: 0
   m_RenderingLayers:
   - Default
-<<<<<<< HEAD
-=======
   - Light Layer 1
   - Light Layer 2
   - Light Layer 3
@@ -80,4 +74,3 @@ TagManager:
   - 
   - 
   - 
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f

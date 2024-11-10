@@ -7,19 +7,6 @@ VFXManager:
   m_CopyBufferShader: {fileID: 0}
   m_SortShader: {fileID: 0}
   m_StripUpdateShader: {fileID: 0}
-<<<<<<< HEAD
-  m_EmptyShader: {fileID: 0}
   m_RenderPipeSettingsPath: 
   m_FixedTimeStep: 0.016666668
   m_MaxDeltaTime: 0.05
-  m_MaxScrubTime: 30
-  m_MaxCapacity: 100000000
-  m_CompiledVersion: 0
-  m_RuntimeVersion: 0
-  m_RuntimeResources: {fileID: 0}
-  m_BatchEmptyLifetime: 300
-=======
-  m_RenderPipeSettingsPath: 
-  m_FixedTimeStep: 0.016666668
-  m_MaxDeltaTime: 0.05
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f
