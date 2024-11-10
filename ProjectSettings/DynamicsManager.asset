@@ -3,18 +3,10 @@
 --- !u!55 &1
 PhysicsManager:
   m_ObjectHideFlags: 0
-<<<<<<< HEAD
-  serializedVersion: 18
-  m_Gravity: {x: 0, y: -9.81, z: 0}
-  m_DefaultMaterial: {fileID: 0}
-  m_BounceThreshold: 2
-  m_DefaultMaxDepenetrationVelocity: 10
-=======
   serializedVersion: 13
   m_Gravity: {x: 0, y: -9.81, z: 0}
   m_DefaultMaterial: {fileID: 0}
   m_BounceThreshold: 2
->>>>>>> 0c7fe10a0f58778557f75aa6a9b3318f3007818f
   m_SleepThreshold: 0.005
   m_DefaultContactOffset: 0.01
   m_DefaultSolverIterations: 6
