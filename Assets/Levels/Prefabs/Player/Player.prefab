@@ -174,8 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a04ead8e496b6614cb3d25f00718cdad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
-  moveForce: 1
-  jumpForce: 5
-  maxSpeed: 5
-  forceDirection: {x: 0, y: 0, z: 0}
+  m_PlayerCamera: {fileID: 0}
+  m_MoveForce: 1
+  m_JumpForce: 5
+  m_MaxSpeed: 5
+  m_ForceDirection: {x: 0, y: 0, z: 0}
