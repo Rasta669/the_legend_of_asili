@@ -20,7 +20,8 @@ public class ThirdPersonController : MonoBehaviour
     // Attack fields
     private Animator m_Animator;                         // Animator for handling attack animations
     private readonly int _hashedAttackParam = Animator.StringToHash("Attack");  // Hashed animator parameter for attack trigger
-    
+    private readonly int _hashedJumpParam = Animator.StringToHash("Jump"); // Hashed parameter name for Jump trigger
+
 
     // Initialization of components and setup
     private void Awake()
@@ -113,8 +114,13 @@ public class ThirdPersonController : MonoBehaviour
     {
         if (IsGrounded())
         {
-            m_ForceDirection += Vector3.up * m_JumpForce;  // Add upward force for jump
+            m_Animator.SetTrigger(_hashedJumpParam);  // Trigger attack animation
+            ApplyJumpForce();
         }
+    }
+    private void ApplyJumpForce()
+    {
+        m_ForceDirection += Vector3.up * m_JumpForce;  // Add upward force for jump
     }
 
     // Triggers attack animation

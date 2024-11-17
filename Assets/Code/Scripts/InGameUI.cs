@@ -3,25 +3,35 @@ using UnityEngine.SceneManagement;
 
 public class InGameUI : MonoBehaviour
 {
-    public GameObject pausedCanvas;
-    public GameObject activeCanvas;
+    [SerializeField] private GameObject m_PausedCanvas;
+    [SerializeField] private GameObject m_ActiveCanvas;
+
+    // [SerializeField] private Texture2D m_CustomCursor;
 
     void Start()
     {
-        pausedCanvas.SetActive(false);
-        activeCanvas.SetActive(true);
+        // Temp cursor settings
+        // if (m_CustomCursor != null)
+        // {   
+        //     Cursor.SetCursor(m_CustomCursor, Vector2.zero, CursorMode.Auto);
+        //     Cursor.lockState = CursorLockMode.Locked;
+
+        // }
+        m_PausedCanvas.SetActive(false);
+        m_ActiveCanvas.SetActive(true);
     }
 
-    public void ResumeGame() { 
-        pausedCanvas.SetActive(false);
-        activeCanvas.SetActive(true);
-        Time.timeScale = 1.0f;   
+    public void ResumeGame()
+    {
+        m_PausedCanvas.SetActive(false);
+        m_ActiveCanvas.SetActive(true);
+        Time.timeScale = 1.0f;
     }
 
     public void PauseGame()
     {
-        pausedCanvas.SetActive(true);
-        activeCanvas.SetActive(false);
+        m_PausedCanvas.SetActive(true);
+        m_ActiveCanvas.SetActive(false);
         Time.timeScale = 0.0f;
     }
 
