@@ -4,7 +4,8 @@ public class ThirdPersonAnimController : MonoBehaviour
 {
     // Component references
     private Animator m_Animator;  // Animator component for controlling animations
-    private readonly int _hashedSpeedParam = Animator.StringToHash("Speed");  // Hashed parameter name for Speed in Animator
+    private readonly int _hashedSpeedParam = Animator.StringToHash("Speed");  // Hashed parameter name for Speed
+
     private Rigidbody m_Rigidbody;  // Rigidbody component for retrieving player velocity
 
     // Attributes

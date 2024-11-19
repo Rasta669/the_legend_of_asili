@@ -2515,7 +2515,7 @@ Transform:
   m_GameObject: {fileID: 193011343}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 25, y: 8.281673, z: -30.598436}
+  m_LocalPosition: {x: -18.5, y: 8.281673, z: -35.1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7864,7 +7864,7 @@ Transform:
   m_GameObject: {fileID: 613098590}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -6.11, y: 0.00000023841858, z: 82.78}
+  m_LocalPosition: {x: -17.7, y: 0.00000023841858, z: 82.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -7909,7 +7909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6887610c8d1ba58418a5afab9fc3f0ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 1.41
 --- !u!95 &613098597
 Animator:
   serializedVersion: 7
@@ -7944,7 +7944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5e9338b8d3d43b42b464cfa358897fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 23.1
+  radius: 30.58
   angle: 52
   playerRef: {fileID: 947676962}
   targetMask:
