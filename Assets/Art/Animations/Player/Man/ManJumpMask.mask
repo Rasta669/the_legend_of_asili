@@ -6,11 +6,6 @@ AvatarMask:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Assets/Art/Animations/Player/AttackMask.mask
-  m_Name: AttackMask
-  m_Mask: 00000000000000000000000000000000000000000000000001000000000000000100000000000000000000000000000001000000
-=======
   m_Name: ManJumpMask
   m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
->>>>>>> 64f4ccaea0a8a8559254b218664873b3f6a3eb20:Assets/Art/Animations/Player/Man/ManJumpMask.mask
   m_Elements: []

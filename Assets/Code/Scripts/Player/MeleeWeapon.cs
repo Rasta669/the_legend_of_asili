@@ -2,8 +2,7 @@
 using UnityEngine;
 
 public class MeleeWeapon : MonoBehaviour
-{
-    private void OnCollisionEnter(Collision other)
+{    private void OnCollisionEnter(Collision other)
     {
         Enemy enemy = other.gameObject.GetComponent<Enemy>();
         if (enemy != null)
