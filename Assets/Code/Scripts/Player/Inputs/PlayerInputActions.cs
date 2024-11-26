@@ -8,6 +8,7 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     private PlayerLocomotionInput _playerLocomotionInput;
     private PlayerState _playerState;
     public bool AttackInput { get; private set; }
+    public bool hasAttacked = false;
     public bool InteractInput { get; private set; }
     #endregion FIELDS
 
@@ -63,6 +64,20 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     {
         Debug.Log("Set Attack to false");
         AttackInput = false;
+    }
+
+    public void SetHasAttacked()
+    {
+        
+        Debug.Log("Set HasAttacked to true");
+        hasAttacked = !hasAttacked;
+    }
+
+    public void SetHasAttackedFalse()
+    {
+        
+        Debug.Log("Set HasAttacked to false");
+        hasAttacked = false;
     }
     public void OnAttack(InputAction.CallbackContext context)
     {

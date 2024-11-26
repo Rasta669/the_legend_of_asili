@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 726b529e298594d9f8277682bba484cc
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Demo/Shaders/Glow Shader/GlowShader.shader
+  uploadId: 703217

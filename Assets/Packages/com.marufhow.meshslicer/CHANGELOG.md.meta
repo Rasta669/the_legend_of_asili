@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3b436e717401f4f579e8872ba216f94e
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/CHANGELOG.md
+  uploadId: 703217

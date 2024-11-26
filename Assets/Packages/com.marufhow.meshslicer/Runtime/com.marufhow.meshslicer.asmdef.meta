@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bd30378004a354b0cbf968486f2e2e34
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Runtime/com.marufhow.meshslicer.asmdef
+  uploadId: 703217

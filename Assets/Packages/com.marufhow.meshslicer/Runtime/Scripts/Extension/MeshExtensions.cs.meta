@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c1d7119a7d67437a85ab7fa444b23ee7
+timeCreated: 1728468782
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Runtime/Scripts/Extension/MeshExtensions.cs
+  uploadId: 703217

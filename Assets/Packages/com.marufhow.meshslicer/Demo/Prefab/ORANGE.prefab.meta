@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 5718ffbb9c80749ebb220cc6e79954b9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Demo/Prefab/ORANGE.prefab
+  uploadId: 703217

@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 6b269e4204504db7857f08416b88485d
+timeCreated: 1728453582
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Runtime/Scripts/Model/Triangle.cs
+  uploadId: 703217

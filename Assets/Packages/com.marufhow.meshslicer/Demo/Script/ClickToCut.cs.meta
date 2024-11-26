@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: c4d9b40350c84821b84470028c50f982
+timeCreated: 1728014904
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Demo/Script/ClickToCut.cs
+  uploadId: 703217

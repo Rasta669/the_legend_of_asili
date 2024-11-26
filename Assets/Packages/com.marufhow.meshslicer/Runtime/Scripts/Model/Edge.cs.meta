@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 86e31881a8094533ad9efb6604aba7ea
+timeCreated: 1728453456
+AssetOrigin:
+  serializedVersion: 1
+  productId: 298964
+  packageName: Dynamic Mesh Slicer
+  packageVersion: 1.0
+  assetPath: Assets/Packages/com.marufhow.meshslicer/Runtime/Scripts/Model/Edge.cs
+  uploadId: 703217
