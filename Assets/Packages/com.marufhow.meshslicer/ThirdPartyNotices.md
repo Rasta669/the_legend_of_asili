@@ -1,1 +1,0 @@
-**No third party models, tool or asset used in this project**
