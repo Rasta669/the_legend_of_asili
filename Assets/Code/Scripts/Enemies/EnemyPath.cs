@@ -1,12 +1,13 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class EnemyPath : MonoBehaviour
 {
     public static Transform[] path;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
     private void Awake()
     {
@@ -20,6 +21,6 @@ public class EnemyPath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

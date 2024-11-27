@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(0)]
 public class Enemies : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
@@ -16,7 +17,6 @@ public class Enemies : MonoBehaviour
             Debug.LogError("EnemyPath.path is not initialized or empty!");
             return;
         }
-
         foreach (var point in EnemyPath.path)
         {
             if (point == null)
@@ -25,7 +25,6 @@ public class Enemies : MonoBehaviour
                 return;
             }
         }
-
         target = EnemyPath.path[0];
         hasArrived = false;
     }
@@ -49,7 +48,6 @@ public class Enemies : MonoBehaviour
         {
             // Create a rotation that faces the target, but only rotates around the Y-axis
             Quaternion targetRotation = Quaternion.LookRotation(dir);
-
             // Apply only the Y component of the rotation, preserving the original X and Z rotation
             enemyMesh.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
             transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
@@ -64,11 +62,9 @@ public class Enemies : MonoBehaviour
             enabled = false;
             Invoke("GetNextPoint", idleTime); // Delay to next waypoint
         }
-        
-
-
     }
 
+    
     void GetNextPoint()
     {
         Debug.Log("Getting next waypoint.");
@@ -85,6 +81,7 @@ public class Enemies : MonoBehaviour
             Debug.Log("No more waypoints.");
         }
     }
+
     //should be a static method
     public void restartPath()
     {
