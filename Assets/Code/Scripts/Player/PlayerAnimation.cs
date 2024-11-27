@@ -27,14 +27,15 @@ public class PlayerAnimation : MonoBehaviour
 
     // action  params
     private static int isAttackingHash = Animator.StringToHash("isAttacking");
+    private static int attackCountHashed = Animator.StringToHash("attackCount");
+
     private static int isInteractingHash = Animator.StringToHash("isInteracting");
     private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
     private int[] actionHashes;
 
     // 
     private Vector3 _currentBlendInput = Vector3.zero;
-
-
+    private MeleeWeapon _weapon;
     // methods
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class PlayerAnimation : MonoBehaviour
         _playerState = GetComponent<PlayerState>();
         _playerController = GetComponent<PlayerController>();
         _playerInputActions = GetComponent<PlayerInputActions>();
+        _weapon = GetComponentInChildren<MeleeWeapon>();
 
         actionHashes = new int[] { isInteractingHash };
     }
@@ -77,7 +79,10 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(isJumpingHash, isJumping);
         _animator.SetBool(isFallingHash, isFalling);
         _animator.SetBool(isRotatingToTargetHash, _playerController.IsRotatingToTarget);
+
         _animator.SetBool(isAttackingHash, _playerInputActions.AttackInput);
+        _animator.SetInteger(attackCountHashed, _weapon.AttackCount);
+
         _animator.SetBool(isInteractingHash, _playerInputActions.InteractInput);
         _animator.SetBool(isPlayingActionHash, isPlayingAction);
 
@@ -86,4 +91,5 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat(inputMagnitude, _currentBlendInput.magnitude);
         _animator.SetFloat(rotationMismatchHash, _playerController.RotationMismatch);
     }
+
 }

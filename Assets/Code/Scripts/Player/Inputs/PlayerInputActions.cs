@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMapActions
 {
     #region FIELDS
-
     private PlayerLocomotionInput _playerLocomotionInput;
     private PlayerState _playerState;
     public bool AttackInput { get; private set; }
@@ -13,12 +12,14 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     #endregion FIELDS
 
 
+    private MeleeWeapon _meleeWeapon;
     #region STARTUP
 
     private void Awake()
     {
         _playerLocomotionInput = GetComponent<PlayerLocomotionInput>();
         _playerState = GetComponent<PlayerState>();
+        _meleeWeapon = GetComponentInChildren<MeleeWeapon>();
     }
     private void OnEnable()
     {
@@ -63,22 +64,24 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     public void SetAttackingFalse()
     {
         Debug.Log("Set Attack to false");
-        AttackInput = false;
+        AttackInput = false; // Reset attack input
+        _meleeWeapon.isReadyToAttack = true; // Allow the next attack
+        _meleeWeapon.CycleAttack(); // Cycle to the next attack animation
     }
+
 
     public void SetHasAttacked()
     {
-        
         Debug.Log("Set HasAttacked to true");
-        hasAttacked = !hasAttacked;
+        hasAttacked = true; // Only set to true
     }
 
     public void SetHasAttackedFalse()
     {
-        
         Debug.Log("Set HasAttacked to false");
-        hasAttacked = false;
+        hasAttacked = false; // Reset to false after attack finishes
     }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
         if (!context.performed)
