@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DefaultExecutionOrder(0)]
 public class Enemies : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
@@ -16,7 +17,6 @@ public class Enemies : MonoBehaviour
             Debug.LogError("EnemyPath.path is not initialized or empty!");
             return;
         }
-
         foreach (var point in EnemyPath.path)
         {
             if (point == null)
@@ -25,7 +25,6 @@ public class Enemies : MonoBehaviour
                 return;
             }
         }
-
         target = EnemyPath.path[0];
         hasArrived = false;
     }
@@ -37,7 +36,7 @@ public class Enemies : MonoBehaviour
             return;
 
         // Move towards the target
-        Transform enemyMeah = transform.GetChild(0);
+        Transform enemyMesh = transform.GetChild(0);
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -49,9 +48,8 @@ public class Enemies : MonoBehaviour
         {
             // Create a rotation that faces the target, but only rotates around the Y-axis
             Quaternion targetRotation = Quaternion.LookRotation(dir);
-
             // Apply only the Y component of the rotation, preserving the original X and Z rotation
-            enemyMeah.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+            enemyMesh.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
             transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
         }
 
@@ -64,11 +62,9 @@ public class Enemies : MonoBehaviour
             enabled = false;
             Invoke("GetNextPoint", idleTime); // Delay to next waypoint
         }
-        
-
-
     }
 
+    
     void GetNextPoint()
     {
         Debug.Log("Getting next waypoint.");
@@ -85,6 +81,7 @@ public class Enemies : MonoBehaviour
             Debug.Log("No more waypoints.");
         }
     }
+
     //should be a static method
     public void restartPath()
     {
