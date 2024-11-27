@@ -37,7 +37,7 @@ public class Enemies : MonoBehaviour
             return;
 
         // Move towards the target
-        Transform enemyMeah = transform.GetChild(0);
+        Transform enemyMesh = transform.GetChild(0);
         Vector3 dir = target.position - transform.position;
         transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
 
@@ -51,7 +51,7 @@ public class Enemies : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(dir);
 
             // Apply only the Y component of the rotation, preserving the original X and Z rotation
-            enemyMeah.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
+            enemyMesh.transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
             transform.rotation = Quaternion.Euler(0f, targetRotation.eulerAngles.y, 0f);
         }
 
