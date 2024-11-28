@@ -435,7 +435,7 @@ MonoBehaviour:
   _nextPortal: {fileID: 0}
   _isLastPortal: 1
   _gemGroup: {fileID: 301187905}
-  _gemsUI: {fileID: 0}
+  _gemsUI: {fileID: 1708727797}
 --- !u!65 &500915487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -108757,3 +108757,4 @@ SceneRoots:
   - {fileID: 678330833}
   - {fileID: 3284419930516488303}
   - {fileID: 104173129}
+  - {fileID: 1992377436}

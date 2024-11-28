@@ -213,7 +213,7 @@ public class EnemyFollow : MonoBehaviour
         if (outOfFieldTimer <= 0) // Forget the player after countdown
         {
             hasSeenPlayer = false;
-            enemy.restartPath(); // Custom restart patrol logic
+            enemy.RestartPath(); // Custom restart patrol logic
             Debug.Log("Enemy lost the player and resumed patrolling");
         }
         else
