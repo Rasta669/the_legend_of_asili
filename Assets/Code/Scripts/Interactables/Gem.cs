@@ -2,27 +2,27 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour, IInteractable
 {
-    public Animator gemAnimator; // Reference to the animator for effects
-
+    [SerializeField] private Animator _gemAnimator; // Reference to the animator for effects
+    [SerializeField] private Portal _portal; // reference to gem owning portal
     public void Interact()
     {
         Debug.Log("Collected the gem!");
-        GetComponent<Collider>().enabled = false; // Disable collider to prevent further checks
-        Destroy(gameObject); // Destroy the gem
+        _portal.GemCollected();
+        Destroy(gameObject);
     }
 
     public void OnPlayerApproach()
     {
         Debug.Log("Player is near the gem!");
-        gemAnimator.SetBool("IsNear", true); // Trigger animation
+        // Add visual or sound effects here
     }
 
     public void OnPlayerLeave()
     {
-        if (gemAnimator != null)
+        if (_gemAnimator != null)
         {
             Debug.Log("Player left the gem!");
-            gemAnimator.SetBool("IsNear", false); // Stop animation
+            _gemAnimator.SetBool("IsNear", false); // Stop animation
         }
     }
 }

@@ -27,7 +27,8 @@ public class PlayerInteractions : MonoBehaviour
 
     private void TryInteract()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, interactionRange, interactableLayer))
+        Vector3 raycastOrigin = transform.position + Vector3.up * 2f; // Offset the raycast origin by 1 unit upwards
+        if (Physics.Raycast(raycastOrigin, transform.forward, out RaycastHit hit, interactionRange, interactableLayer))
         {
             // chcek if the hit object is interactable
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
