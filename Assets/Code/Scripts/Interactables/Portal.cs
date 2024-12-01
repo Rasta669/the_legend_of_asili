@@ -3,24 +3,33 @@ using TMPro;
 
 public class Portal : MonoBehaviour, IInteractable
 {
+    // [SerializeField] private GameObject _currentLevel; // reference the current level
+    [SerializeField] private GameObject _prevLevel;
     [SerializeField] private GameObject _nextPortal; // Reference to the next portal
-    [SerializeField] private bool _isLastPortal;    // Check if this is the last portal
+    [SerializeField] private Transform _nextSpawnLocation; // new spawn point
+    [SerializeField] public GameObject _nextLevel; // reference entire next level
+    [SerializeField] public bool _isLastPortal;    // Check if this is the last portal
     [SerializeField] private Transform _gemGroup;  // Parent object containing gems for this level
+    [SerializeField] private TextMeshProUGUI _gemCountText; // text ui to display gems collected
 
+    private GameObject _player;
     private int _gemsToCollect;       // Total gems to collect
     private int _gemsCollected = 0;  // Gems collected so far
-    [SerializeField] private TextMeshProUGUI _gemsUI;
 
     public void Start()
     {
+        if (_nextLevel != null) { _nextLevel.SetActive(false); } // disable next level
+
+        _player = GameObject.FindWithTag("Player");
+
         // Dynamically retrieve all gem children from the gem group
         if (_gemGroup != null)
         {
-            foreach (Transform child in _gemGroup)
+            foreach (Transform gem in _gemGroup)
             {
-                if (child.gameObject.activeSelf)
+                if (gem.gameObject.activeSelf)
                 {
-                    Debug.Log($"Adding gem: {child.gameObject.name} to collections.");
+                    Debug.Log($"Adding gem: {gem.gameObject.name} to collections.");
                     _gemsToCollect++;
                 }
             }
@@ -31,14 +40,19 @@ public class Portal : MonoBehaviour, IInteractable
         {
             Debug.LogWarning("No Gem Group assigned to the Portal!");
         }
-
-        if (_nextPortal != null) { _nextPortal.SetActive(false); }
     }
 
+    private void Update()
+    {
+        if (_gemsCollected == _gemsToCollect)
+        {
+            _nextLevel.SetActive(true); // Activate the next portal
+        }
+    }
     private void UpdateGemUI()
     {
         // Update the UI to show collected gems out of total gems
-        _gemsUI.text = $"{_gemsCollected} / {_gemsToCollect}";
+        _gemCountText.text = $"{_gemsCollected} / {_gemsToCollect}";
     }
 
     public void Interact()
@@ -63,10 +77,33 @@ public class Portal : MonoBehaviour, IInteractable
         }
         else if (_nextPortal != null)
         {
-            Debug.Log($"Portal Open! Moving to next area: {_nextPortal.name}");
-            _nextPortal.SetActive(true); // Activate the next portal
+            Debug.Log($"Portal Open! Moving to next area: {_nextPortal.name}");            // teleport player to new level
+            if (_nextSpawnLocation)
+            {
+                TeleportPlayer(_nextSpawnLocation.position);
+            }
         }
-        Destroy(gameObject);
+
+        // disable current level;
+        Invoke(nameof(RidOldLevel), 5f);
+    }
+
+    private void RidOldLevel()
+    {
+        if (_prevLevel != null)
+        {
+            // _prevLevel.SetActive(false);
+            DestroyImmediate(_prevLevel);
+        }
+    }
+
+    private void TeleportPlayer(Vector3 destination)
+    {
+        if (_player != null)
+        {
+            _player.transform.position = destination; // set player location to new designated location
+            Debug.Log($"Player Teleported to: {destination}");
+        }
     }
 
     public void OnPlayerApproach()
