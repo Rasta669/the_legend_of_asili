@@ -11,6 +11,9 @@ public class CursorManager : MonoBehaviour
     {
         _inGameUI = GetComponent<InGameUI>();
         Cursor.SetCursor(_cursor, Vector2.zero, CursorMode.Auto);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Update()
@@ -33,7 +36,7 @@ public class CursorManager : MonoBehaviour
         {
             // Pause game logic, but allow UI to interact
             _inGameUI.PauseGame();
-            
+
             // Show the cursor and unlock it when paused
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

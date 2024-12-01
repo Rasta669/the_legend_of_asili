@@ -7,7 +7,8 @@ public class Portal : MonoBehaviour, IInteractable
     [SerializeField] private bool _isLastPortal;    // Check if this is the last portal
     [SerializeField] private Transform _gemGroup;  // Parent object containing gems for this level
 
-    private int _gemsToCollect;
+    private int _gemsToCollect;       // Total gems to collect
+    private int _gemsCollected = 0;  // Gems collected so far
     [SerializeField] private TextMeshProUGUI _gemsUI;
 
     public void Start()
@@ -23,7 +24,8 @@ public class Portal : MonoBehaviour, IInteractable
                     _gemsToCollect++;
                 }
             }
-            _gemsUI.text = _gemsToCollect.ToString();
+
+            UpdateGemUI(); // Update the UI at the start
         }
         else
         {
@@ -32,20 +34,22 @@ public class Portal : MonoBehaviour, IInteractable
 
         if (_nextPortal != null) { _nextPortal.SetActive(false); }
     }
-    public void Update()
+
+    private void UpdateGemUI()
     {
-        _gemsUI.text = _gemsToCollect.ToString();
+        // Update the UI to show collected gems out of total gems
+        _gemsUI.text = $"{_gemsCollected} / {_gemsToCollect}";
     }
 
     public void Interact()
     {
-        if (_gemsToCollect <= 0)
+        if (_gemsCollected >= _gemsToCollect)
         {
             ActivatePortal();
         }
         else
         {
-            Debug.Log($"Portal locked. {_gemsToCollect} gem(s) still need to be collected!");
+            Debug.Log($"Portal locked. {_gemsToCollect - _gemsCollected} gem(s) still need to be collected!");
         }
     }
 
@@ -68,9 +72,9 @@ public class Portal : MonoBehaviour, IInteractable
     public void OnPlayerApproach()
     {
         Debug.Log("Approaching the portal...");
-        if (_gemsToCollect > 0)
+        if (_gemsCollected < _gemsToCollect)
         {
-            Debug.Log($"Collect all gems to activate this portal. {_gemsToCollect} remaining.");
+            Debug.Log($"Collect all gems to activate this portal. {_gemsToCollect - _gemsCollected} remaining.");
         }
     }
 
@@ -81,14 +85,15 @@ public class Portal : MonoBehaviour, IInteractable
 
     public void GemCollected()
     {
-        _gemsToCollect--;
-        Debug.Log($"Gem collected! {_gemsToCollect} remaining.");
+        _gemsCollected++;
+        Debug.Log($"Gem collected! {_gemsCollected} / {_gemsToCollect}");
 
-        if (_gemsToCollect <= 0)
+        UpdateGemUI(); // Update the UI whenever a gem is collected
+
+        if (_gemsCollected >= _gemsToCollect)
         {
             Debug.Log("All gems collected! Portal can now be activated.");
             // Additional visual or audio feedback to indicate portal is ready
         }
     }
-
 }

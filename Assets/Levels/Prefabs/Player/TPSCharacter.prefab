@@ -2644,7 +2644,6 @@ GameObject:
   - component: {fileID: 6340263002901339918}
   - component: {fileID: 7901970053509977717}
   - component: {fileID: 1108899473001754879}
-  - component: {fileID: 3248115821885068488}
   - component: {fileID: 7950026616794579043}
   m_Layer: 0
   m_Name: sword
@@ -2721,28 +2720,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3248115821885068488
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7875883527141948824}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4634054444666320730, guid: e5d1bfca5fbaea04fa93b6bf98558068, type: 3}
 --- !u!114 &7950026616794579043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2755,12 +2732,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ea351732f577ef4495bacabc6a335fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDistance: 2.5
-  attackDelay: 0.4
+  damageAmount: 10
   attackLayer:
     serializedVersion: 2
     m_Bits: 1024
-  weaponBase: {fileID: 1951257075978501637}
   isReadyToAttack: 1
 --- !u!1 &8082176687920664536
 GameObject:

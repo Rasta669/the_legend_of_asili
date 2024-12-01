@@ -61,12 +61,6 @@ public class PlayerController : MonoBehaviour
         _antiBump = sprintSpeed;
         _stepOffset = _characterController.stepOffset;
     }
-
-    private void Start()
-    {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-    }
     #endregion STARTUP
 
 

@@ -2,13 +2,19 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Animator _gemAnimator; // Reference to the animator for effects
-    [SerializeField] private Portal _portal; // reference to gem owning portal
+    [SerializeField] private Portal _portal; // Reference to the gem's owning portal
+    private Animator _gemAnimator; // Reference to the animator for effects
+
+
+    private void Start()
+    {
+        _gemAnimator = GetComponent<Animator>();
+    }
     public void Interact()
     {
         Debug.Log("Collected the gem!");
-        _portal.GemCollected();
-        Destroy(gameObject);
+        _portal.GemCollected(); // Notify the portal that a gem has been collected
+        Destroy(gameObject);    // Remove the gem from the scene
     }
 
     public void OnPlayerApproach()

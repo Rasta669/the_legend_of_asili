@@ -80,6 +80,7 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     {
         Debug.Log("Set HasAttacked to false");
         hasAttacked = false; // Reset to false after attack finishes
+        _meleeWeapon.DisableWeaponCollider();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
