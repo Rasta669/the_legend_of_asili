@@ -268,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3652072489271026756}
   - component: {fileID: 702434175366319431}
-  - component: {fileID: 7530904983048234174}
+  - component: {fileID: 1805608000176355093}
   m_Layer: 8
   m_Name: Portal
   m_TagString: Untagged
@@ -284,7 +284,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7725718479653660494}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.6521228, z: -0, w: 0.75811344}
+  m_LocalRotation: {x: 0, y: -0.6521248, z: 0, w: 0.7581116}
   m_LocalPosition: {x: 2.5, y: 5.12, z: -15.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -315,7 +315,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3, y: 8, z: 12}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7530904983048234174
+--- !u!114 &1805608000176355093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,7 +327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64eedd226f32873428ced6c888f481ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _nextPortal: {fileID: 0}
-  _isLastPortal: 0
-  _gemGroup: {fileID: 0}
-  _gemsUI: {fileID: 0}
+  _newSpawnLocation: {fileID: 0}
+  _prevLevel: {fileID: 0}
+  _nextLevel: {fileID: 0}
