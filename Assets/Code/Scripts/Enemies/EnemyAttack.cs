@@ -60,6 +60,9 @@ public class EnemyAttack : MonoBehaviour
     {
         // Visualize the ground check in the editor
         Gizmos.color = Color.yellow;
-        Gizmos.DrawCube(_attackCollider.transform.position, _attackCollider.size);
+        if (_attackCollider != null)
+        {
+            Gizmos.DrawWireCube(_attackCollider.transform.position, _attackCollider.size);
+        }
     }
 }
