@@ -102,7 +102,7 @@ public class MeleeWeapon : MonoBehaviour
     [SerializeField] private int damageAmount = 10;
     [SerializeField] private LayerMask attackLayer; // Specify layers for valid targets
     private PlayerInputActions _playerInputActions;
-    private Collider weaponCollider; // Collider attached to the weapon
+    private BoxCollider _weaponCollider; // Collider attached to the weapon
     private bool hasAttacked = false; // Track attack state
     public bool isReadyToAttack = true;
     private int attackCount;
@@ -118,15 +118,15 @@ public class MeleeWeapon : MonoBehaviour
     private void Start()
     {
         _playerInputActions = FindAnyObjectByType<PlayerInputActions>();
-        weaponCollider = GetComponent<Collider>();
+        _weaponCollider = GetComponent<BoxCollider>();
 
-        if (weaponCollider == null)
+        if (_weaponCollider == null)
         {
             Debug.LogError("No Collider attached to the melee weapon.");
             return;
         }
 
-        weaponCollider.enabled = false; // Ensure the collider is disabled initially
+        _weaponCollider.enabled = false; // Ensure the collider is disabled initially
     }
 
     private void Update()
@@ -152,7 +152,7 @@ public class MeleeWeapon : MonoBehaviour
     private void EnableWeaponCollider()
     {
         hasAttacked = true;
-        weaponCollider.enabled = true;
+        _weaponCollider.enabled = true;
 
         // Schedule the collider to be turned off
         Invoke(nameof(DisableWeaponCollider), 0.5f); // Adjust duration based on your animation
@@ -161,7 +161,7 @@ public class MeleeWeapon : MonoBehaviour
     // Disable the weapon's collider
     public void DisableWeaponCollider()
     {
-        weaponCollider.enabled = false;
+        _weaponCollider.enabled = false;
         hasAttacked = false;
     }
 
@@ -190,17 +190,27 @@ public class MeleeWeapon : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                Debug.Log($"Hit enemy: {other.gameObject.name}");
                 var enemyStats = other.gameObject.GetComponent<EnemyStats>();
                 if (enemyStats != null)
                 {
                     enemyStats.TakeDamage(damageAmount);
+                    Debug.Log($"Hit enemy: {other.gameObject.name}");
                 }
                 else
                 {
                     Debug.LogWarning("EnemyStats component not found on the hit object.");
                 }
             }
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        // Visualize the ground check in the editor
+        Gizmos.color = Color.yellow;
+        if (_weaponCollider != null)
+        {
+            Gizmos.DrawWireCube(_weaponCollider.transform.position, _weaponCollider.size);
         }
     }
 }

@@ -17,11 +17,11 @@ public class SoundManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             Debug.Log("SoundManager initialized");
         }
-        //else
-        //{
+        // else
+        // {
         //    Debug.LogWarning("Duplicate SoundManager destroyed");
         //    Destroy(gameObject);
-        //}
+        // }
     }
 
 
@@ -81,11 +81,7 @@ public class SoundManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            Debug.Log("Manual Play Triggered");
-            musicSource.Play();
-        }
+        // check scene and change music clip
     }
 
     private void OnSceneUnloaded(Scene current)
