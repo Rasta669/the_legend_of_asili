@@ -1,14 +1,9 @@
 using UnityEngine;
-
 public class Gem : MonoBehaviour, IInteractable
 {
-    private Animator _gemAnimator; // Reference to the animator for effects
+    private Animator _gemAnimator;
     private bool _hasPickedUpGem = false;
 
-    private void Start()
-    {
-        _gemAnimator = GetComponent<Animator>();
-    }
     public void Interact()
     {
         if (!_hasPickedUpGem)
@@ -17,24 +12,23 @@ public class Gem : MonoBehaviour, IInteractable
             _hasPickedUpGem = true;
             Invoke(nameof(GetRidOfObject), 1f);
         }
-        else
-        {
-            return;
-        }
     }
+
     private void GetRidOfObject()
     {
         Destroy(gameObject);
-        _hasPickedUpGem = false;
     }
 
     public void OnPlayerApproach()
     {
-
         if (_gemAnimator != null)
         {
-            Debug.Log("Player is near the gem!");
-            _gemAnimator.SetBool("IsNear", true); // Stop animation
+            _gemAnimator.SetBool("IsNear", true);
+        }
+        HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+        if (hintTextManager != null)
+        {
+            hintTextManager.ShowHint("E to Collect (get close)");
         }
     }
 
@@ -42,8 +36,12 @@ public class Gem : MonoBehaviour, IInteractable
     {
         if (_gemAnimator != null)
         {
-            Debug.Log("Player left the gem!");
-            _gemAnimator.SetBool("IsNear", false); // Stop animation
+            _gemAnimator.SetBool("IsNear", false);
+        }
+        HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+        if (hintTextManager != null)
+        {
+            hintTextManager.HideHint();
         }
     }
 }

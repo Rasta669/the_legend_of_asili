@@ -66,11 +66,31 @@ public class Portal : MonoBehaviour, IInteractable
 
     public void OnPlayerApproach()
     {
-        Debug.Log($"{_player.name} is has enter the: {gameObject.name} :interaction range.");
+        HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+        if (hintTextManager != null)
+        {
+            if (CanActivatePortal())
+            {
+                hintTextManager.ShowHint("E to Activate");
+            }
+            if (CanActivatePortal() && _isLastPortal)
+            {
+                hintTextManager.ShowHint("Locked (Final Portal)");
+            }
+            else
+            {
+                hintTextManager.ShowHint("Collect all gems to activate");
+            }
+        }
     }
 
     public void OnPlayerLeave()
     {
-        Debug.Log($"{_player.name} is has left the: {gameObject.name} :interaction range.");
+        HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+        if (hintTextManager != null)
+        {
+            hintTextManager.HideHint();
+        }
     }
+
 }
