@@ -4,6 +4,7 @@ using UnityEngine;
 public class EnemyPath : MonoBehaviour
 {
     public static Transform[] path;
+    public GameObject Path;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -11,11 +12,17 @@ public class EnemyPath : MonoBehaviour
     }
     private void Awake()
     {
-        path = new Transform[transform.childCount];
+        path = new Transform[Path.transform.childCount];
         for (int i = 0; i < path.Length; i++)
         {
-            path[i] = transform.GetChild(i);
+            path[i] = Path.transform.GetChild(i);
         }
+
+        //path  = new Transform[path.Length];
+        //for (int i = 0; i < path.Length; i++) {
+        //    path[i] = transform;
+        //}
+
     }
 
     // Update is called once per frame

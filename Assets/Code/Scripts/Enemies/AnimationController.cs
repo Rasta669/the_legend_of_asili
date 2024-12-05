@@ -1,40 +1,95 @@
+//using UnityEngine;
+
+//public class AnimationController : MonoBehaviour
+//{
+//    Animator animator;
+//    [SerializeField] float blend = 0.5f;
+//    [SerializeField] float stopBlend = 0.0f;
+     
+//    FieldOfView fov;
+//    // Start is called once before the first execution of Update after the MonoBehaviour is created
+//    void Start()
+//    {
+//        animator = GetComponent<Animator>();
+//        fov = gameObject.GetComponentInParent<FieldOfView>(); ;
+//    }
+
+//    // Update is called once per frame
+//    void Update()
+//    {
+//        Debug.Log($"hasArrived: {Enemies.hasArrived}");
+//        Debug.Log($"speed: {animator.GetFloat("speed")}");
+//        Debug.Log($"Attack: {animator.GetFloat("AttackParameter")}");
+//        if (!fov.canSeePlayer)
+//        {
+//            animator.SetFloat("AttackParameter", 0.0f);
+//            if (Enemies.hasArrived == false)
+//            {
+//                //animator.SetBool("isWalking", true);
+//                animator.SetFloat("speed", blend);
+//            }
+//            else
+//            {
+//                //animator.SetBool("isWalking", false);
+//                animator.SetFloat("speed", stopBlend);
+//            }
+//        }
+//        //else
+//        //    animator.SetFloat("Blend", runBlend);
+//    }
+//}
+
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    Animator animator;
-    [SerializeField] float blend = 0.5f;
-    [SerializeField] float stopBlend = 0.0f;
-     
-    FieldOfView fov;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Animator animator;
+    [SerializeField] private float blend = 0.5f;
+    [SerializeField] private float stopBlend = 0.0f;
+
+    private FieldOfView fov;
+    [SerializeField] private Enemies enemy; // Reference to the associated Enemies instance
+
     void Start()
     {
         animator = GetComponent<Animator>();
-        fov = gameObject.GetComponentInParent<FieldOfView>(); ;
+        fov = gameObject.GetComponentInParent<FieldOfView>();
+
+        // If not assigned in the inspector, try to find the Enemies component in parent
+        if (enemy == null)
+        {
+            enemy = GetComponent<Enemies>();
+            if (enemy == null)
+            {
+                Debug.LogError("No Enemies component found for AnimationController!");
+            }
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Debug.Log($"hasArrived: {Enemies.hasArrived}");
+        if (enemy == null)
+        {
+            Debug.LogError("Enemy reference is missing.");
+            return;
+        }
+
+        Debug.Log($"hasArrived: {enemy.hasArrived}");
         Debug.Log($"speed: {animator.GetFloat("speed")}");
         Debug.Log($"Attack: {animator.GetFloat("AttackParameter")}");
+
         if (!fov.canSeePlayer)
         {
             animator.SetFloat("AttackParameter", 0.0f);
-            if (Enemies.hasArrived == false)
+            if (!enemy.hasArrived)
             {
-                //animator.SetBool("isWalking", true);
                 animator.SetFloat("speed", blend);
             }
             else
             {
-                //animator.SetBool("isWalking", false);
                 animator.SetFloat("speed", stopBlend);
             }
         }
-        //else
-        //    animator.SetFloat("Blend", runBlend);
+        // else logic for when fov.canSeePlayer is true can be added here
     }
 }
