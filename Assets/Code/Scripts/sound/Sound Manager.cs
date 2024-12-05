@@ -4,15 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager instance;
+    public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource, effectsSource;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         //musicSource = GetComponent<AudioSource>();
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             //musicSource = GetComponent<AudioSource>();
             DontDestroyOnLoad(gameObject);
             Debug.Log("SoundManager initialized");

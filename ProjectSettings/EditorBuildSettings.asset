@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Levels/Scenes/BackgroundStory.unity
+    guid: 079a27d596343d940a0ca4e662477ed7
+  - enabled: 1
     path: Assets/Levels/Scenes/UIScene.unity
     guid: e1e8c20bc34451c42b13e129f31b3f82
   - enabled: 1

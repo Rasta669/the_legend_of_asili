@@ -10,12 +10,12 @@ public class ToggleAudio : MonoBehaviour
         if (toggleMusic)
         {
             Debug.Log("Toggling music");
-            SoundManager.instance.ToggleMusic();
+            SoundManager.Instance.ToggleMusic();
         }
         if (toggleEffects)
         {
             Debug.Log("Toggling effects");
-            SoundManager.instance.ToggleEffects();  
+            SoundManager.Instance.ToggleEffects();  
         }
     }
 }

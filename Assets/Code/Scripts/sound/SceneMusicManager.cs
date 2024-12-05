@@ -6,9 +6,9 @@ public class SceneMusicManager : MonoBehaviour
 
     private void Start()
     {
-        if (SoundManager.instance != null && sceneMusic != null)
+        if (SoundManager.Instance != null && sceneMusic != null)
         {
-            SoundManager.instance.ChangeMusic(sceneMusic);   
+            SoundManager.Instance.ChangeMusic(sceneMusic);   
         }
     }
 }
