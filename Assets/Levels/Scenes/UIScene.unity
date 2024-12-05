@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 8d7659dea3adcd849ae55a053d71424a, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -979,6 +979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2421071279893948767, guid: 9afc11cb00b374e4f8f1feee0aae2ba4, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b35b871a99ba89a458503a29a693b02c, type: 2}
     - target: {fileID: 6457694788447267437, guid: 9afc11cb00b374e4f8f1feee0aae2ba4, type: 3}
       propertyPath: m_Name
       value: gem_mesh

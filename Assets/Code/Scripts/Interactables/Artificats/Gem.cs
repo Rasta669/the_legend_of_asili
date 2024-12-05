@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Gem : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Portal _portal; // Reference to the gem's owning portal
     private Animator _gemAnimator; // Reference to the animator for effects
     private bool _hasPickedUpGem = false;
 
@@ -31,8 +30,12 @@ public class Gem : MonoBehaviour, IInteractable
 
     public void OnPlayerApproach()
     {
-        Debug.Log("Player is near the gem!");
-        // Add visual or sound effects here
+
+        if (_gemAnimator != null)
+        {
+            Debug.Log("Player is near the gem!");
+            _gemAnimator.SetBool("IsNear", true); // Stop animation
+        }
     }
 
     public void OnPlayerLeave()

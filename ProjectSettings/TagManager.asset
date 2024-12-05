@@ -18,8 +18,8 @@ TagManager:
   - Interactable
   - Player
   - Hitable
-  - 
-  - 
+  - Minimap_Viewable
+  - LevelBorder
   - 
   - 
   - 
