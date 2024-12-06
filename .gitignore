@@ -9,6 +9,10 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
+Assets/Code/Scripts/Enemies/FieldOfView2D.cs
+
+
+
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
@@ -77,4 +81,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-
+# add extras
+/[Aa]ssets/ASSETSTORE_PACKAGES/
