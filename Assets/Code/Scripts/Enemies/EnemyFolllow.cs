@@ -262,7 +262,7 @@
 
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
-////////////////////// RIGID BODY WORKING ENEMY CONTROLLER ///////////////////////
+////////////////////// END OF RIGID BODY WORKING ENEMY CONTROLLER ///////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////
@@ -286,13 +286,16 @@ public class EnemyFollow : MonoBehaviour
     private bool hasSeenPlayer = false;
     private Vector3 lastKnownPosition; // Last known position of the player
     private bool isSearching = false;
+    private Vector3 patrolDirection; // To store the direction when the player is lost
+
+    public bool _hasTriggeredAttack = false;
 
     FieldOfView fov;
     Enemies enemy;
     Animator animator;
 
 
-    void Start()
+    private void Start()
     {
         fov = GetComponent<FieldOfView>();
         enemy = GetComponent<Enemies>();
@@ -304,9 +307,11 @@ public class EnemyFollow : MonoBehaviour
 
         if (characterController == null)
             Debug.LogError("CharacterController is missing!");
+
+        patrolDirection = transform.forward; // Set initial patrol direction as forward
     }
 
-    void Update()
+    private void Update()
     {
         if (player == null) return;
 
@@ -338,17 +343,6 @@ public class EnemyFollow : MonoBehaviour
         }
     }
 
-    // void FollowPlayer()
-    // {
-    //     Vector3 direction = (player.position - transform.position).normalized;
-    //     direction.y = 0;
-
-    //     characterController.Move(direction * speed * Time.deltaTime);
-
-    //     animator.SetFloat("speed", runBlend);
-    //     animator.SetFloat("AttackParameter", 0); //hard coded
-    //     Debug.Log("Enemy chasing the player");
-    // }
     void FollowPlayer()
     {
         Vector3 direction = (player.position - transform.position).normalized;
@@ -364,20 +358,16 @@ public class EnemyFollow : MonoBehaviour
         Debug.Log("Enemy chasing the player");
     }
 
-    // void AttackPlayer()
-    // {
-    //     animator.SetFloat("speed", 0); // Stop moving
-    //     animator.SetFloat("AttackParameter", 1); // Trigger attack animation
-    //     Debug.Log("Enemy attacking the player");
-    // }
     void AttackPlayer()
-{
-    // Smoothly blend to the attack animation
-    animator.SetFloat("speed", Mathf.Lerp(animator.GetFloat("speed"), initialAttackBlend, Time.deltaTime * blendSpeed));
-    animator.SetFloat("AttackParameter", Mathf.Lerp(animator.GetFloat("AttackParameter"), attackBlend, Time.deltaTime * blendSpeed));
+    {
+        // Smoothly blend to the attack animation
+        animator.SetFloat("speed", Mathf.Lerp(animator.GetFloat("speed"), initialAttackBlend, Time.deltaTime * blendSpeed));
+        animator.SetFloat("AttackParameter", Mathf.Lerp(animator.GetFloat("AttackParameter"), attackBlend, Time.deltaTime * blendSpeed));
+        Debug.Log("Enemy attacking the player");
+    }
 
-    Debug.Log("Enemy attacking the player");
-}
+    public void TriggerAttackTrue() { _hasTriggeredAttack = true; }
+    public void TriggerAttackFalse() { _hasTriggeredAttack = false; }
 
     void HandlePlayerOutOfSight()
     {
@@ -398,6 +388,9 @@ public class EnemyFollow : MonoBehaviour
             enemy.RestartPath(); // Custom patrol logic
             Debug.Log("Enemy lost the player and resumed patrolling");
         }
+
+        // Smoothly rotate back to patrol direction if the player is lost
+        FacePatrolDirection();
     }
 
     void MoveToLastKnownPosition()
@@ -424,4 +417,11 @@ public class EnemyFollow : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
+    private void FacePatrolDirection()
+    {
+        // Smoothly rotate back to the patrol direction if the player is out of sight
+        Quaternion targetRotation = Quaternion.LookRotation(patrolDirection);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    }
+
 }

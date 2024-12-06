@@ -11,11 +11,14 @@ public class EnemyStats : MonoBehaviour
 
 
     private float _currentHealth;
+    private Animator _animator;
+    private int _hashedGotHit = Animator.StringToHash("GotHit");
 
 
     // STARTUP
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _currentHealth = _maxHealth;
         if (_healthBar != null)
         {
@@ -44,6 +47,7 @@ public class EnemyStats : MonoBehaviour
     }
     public void TakeDamage(int amount)
     {
+        _animator.SetTrigger(_hashedGotHit);
         _currentHealth -= amount;
         _healthBar.SetSlider(_currentHealth);
     }

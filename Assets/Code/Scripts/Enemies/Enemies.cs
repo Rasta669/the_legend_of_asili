@@ -518,6 +518,12 @@
 //    }
 //}
 
+
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 using UnityEngine;
 
 [DefaultExecutionOrder(0)]
@@ -525,10 +531,7 @@ public class Enemies : MonoBehaviour
 {
     [SerializeField] private Transform pathParent; // Parent transform containing the path points for this enemy
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float gravity = -9.81f; // Gravity force
     [SerializeField] private float idleTime = 5f;
-    [SerializeField] private float groundCheckDistance = 0.2f; // Distance to check for ground
-    [SerializeField] private LayerMask groundLayer; // Layer for ground detection
 
     private int pathPointIndex = 0;
     private Transform target;
@@ -573,16 +576,6 @@ public class Enemies : MonoBehaviour
 
     void Update()
     {
-        // Ground check using a raycast
-        isGrounded = Physics.CheckSphere(transform.position + Vector3.down * groundCheckDistance, groundCheckDistance, groundLayer);
-
-        if (isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f; // Reset vertical velocity to stay grounded
-        }
-
-        // Apply gravity
-        velocity.y += gravity * Time.deltaTime;
 
         // Check if we have a valid target
         if (pathPointIndex >= pathPoints.Length || target == null)
@@ -594,9 +587,6 @@ public class Enemies : MonoBehaviour
 
         // Normalize the movement direction and scale by speed
         Vector3 movement = dir.normalized * speed;
-
-        // Add vertical velocity
-        movement.y = velocity.y;
 
         // Apply movement to the CharacterController
         characterController.Move(movement * Time.deltaTime);
@@ -640,14 +630,6 @@ public class Enemies : MonoBehaviour
         enabled = true;
         Debug.Log($"{gameObject.name} moving to waypoint {pathPointIndex + 1}.");
     }
-
-    // Visualize the ground check in the editor
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = isGrounded ? Color.green : Color.red;
-        Gizmos.DrawSphere(transform.position + Vector3.down * groundCheckDistance, groundCheckDistance);
-    }
-
     // Reset the path and resume moving
     public void RestartPath()
     {

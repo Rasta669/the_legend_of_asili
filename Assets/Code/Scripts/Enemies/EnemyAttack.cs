@@ -1,68 +1,46 @@
 using UnityEngine;
-
 public class EnemyAttack : MonoBehaviour
 {
-    [Header("Attacking")]
-    [SerializeField] private int damageAmount = 10;
-    [SerializeField] private LayerMask attackLayer; // Specify layers for valid targets (e.g., Player)
-    private BoxCollider _attackCollider; // Collider for the enemy's attack hitbox
+    [SerializeField] private BoxCollider boxCollideer;
+
+    private EnemyFollow _enemyFollow;
+    private bool _hasDamaged = false;
 
     private void Start()
     {
-        _attackCollider = GetComponent<BoxCollider>();
-        if (_attackCollider == null)
+        _enemyFollow = GetComponent<EnemyFollow>();
+        if (boxCollideer == null)
         {
-            Debug.LogError("No Collider attached to the enemy attack object.");
-            return;
+            Debug.LogError("No Attack Collider attached to the melee weapon.");
         }
-        // _attackCollider.gameObject.SetActive(false);
-    }
-
-    // Animation event: Enable enemy's attack collider
-    public void EnableAttackCollider()
-    {
-        _attackCollider.gameObject.SetActive(true);
-        Debug.Log("Enemy attack collider enabled.");
-    }
-
-    // Animation event: Disable enemy's attack collider
-    public void DisableAttackCollider()
-    {
-        _attackCollider.gameObject.SetActive(false);
-        Debug.Log("Enemy attack collider disabled.");
-    }
-
-    // Detect collisions and apply damage during attack
-    private void OnTriggerEnter(Collider other)
-    {
-        // Check if the object belongs to the attackLayer (e.g., the player layer)
-        if (((1 << other.gameObject.layer) & attackLayer) != 0)
+        else
         {
-            if (other.CompareTag("Player"))
-            {
-                // If the target has PlayerStats, deal damage
-                var playerStats = other.gameObject.GetComponent<PlayerStats>();
-                if (playerStats != null)
-                {
-                    playerStats.TakeDamage(damageAmount);
-                    Debug.Log($"Enemy dealt {damageAmount} damage to {other.gameObject.name}.");
-                }
-                else
-                {
-                    Debug.LogWarning("PlayerStats component not found on the hit object.");
-                }
-            }
+            Debug.Log("Attack Collider found and ready.");
+            boxCollideer.enabled = false; // Ensure the collider is disabled initially
+        }
+    }
+    private void Update()
+    {
+
+        if (_enemyFollow._hasTriggeredAttack && !boxCollideer.enabled)
+        {
+            Debug.Log($"{gameObject.name} is attacking...");
+            EnableCollider();
+        }
+        else if (!_enemyFollow._hasTriggeredAttack && boxCollideer.enabled)
+        {
+            DisableCollider();
         }
     }
 
-
-    private void OnDrawGizmos()
+    private void EnableCollider()
     {
-        // Visualize the ground check in the editor
-        Gizmos.color = Color.yellow;
-        if (_attackCollider != null)
-        {
-            Gizmos.DrawWireCube(_attackCollider.transform.position, _attackCollider.size);
-        }
+        boxCollideer.enabled = true;
+        _hasDamaged = true;
+    }
+    private void DisableCollider()
+    {
+        boxCollideer.enabled = false;
+        _hasDamaged = false;
     }
 }

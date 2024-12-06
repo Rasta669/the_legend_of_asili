@@ -74,10 +74,6 @@ public class AnimationController : MonoBehaviour
             return;
         }
 
-        Debug.Log($"hasArrived: {enemy.hasArrived}");
-        Debug.Log($"speed: {animator.GetFloat("speed")}");
-        Debug.Log($"Attack: {animator.GetFloat("AttackParameter")}");
-
         if (!fov.canSeePlayer)
         {
             animator.SetFloat("AttackParameter", 0.0f);

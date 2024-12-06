@@ -65,7 +65,7 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     {
         Debug.Log("Set Attack to false");
         AttackInput = false; // Reset attack input
-        _meleeWeapon.isReadyToAttack = true; // Allow the next attack
+        // _meleeWeapon.isReadyToAttack = true; // Allow the next attack
         _meleeWeapon.CycleAttack(); // Cycle to the next attack animation
     }
 
@@ -80,7 +80,6 @@ public class PlayerInputActions : MonoBehaviour, PlayerControls.IPlayerActionsMa
     {
         Debug.Log("Set HasAttacked to false");
         hasAttacked = false; // Reset to false after attack finishes
-        _meleeWeapon.DisableWeaponCollider();
     }
 
     public void OnAttack(InputAction.CallbackContext context)
