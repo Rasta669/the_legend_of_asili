@@ -32,11 +32,14 @@ public class PlayerAnimation : MonoBehaviour
     private static int isInteractingHash = Animator.StringToHash("isInteracting");
     private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
     private int[] actionHashes;
+    [SerializeField] private AudioClip attackSound;
 
     // 
     private Vector3 _currentBlendInput = Vector3.zero;
     private MeleeWeapon _weapon;
     private PlayerStats _playerStats;
+
+    private bool hasAttacked = false;
     // methods
     private void Awake()
     {
@@ -52,6 +55,13 @@ public class PlayerAnimation : MonoBehaviour
 
     private void Update()
     {
+
+        if (_playerInputActions.hasPlayedAttackSound)
+        {
+            SoundManager.Instance.PlayAttackSound(attackSound);
+            _playerInputActions.hasPlayedAttackSound = false;
+        }
+
         UpdateAnimState();
     }
 
@@ -65,9 +75,6 @@ public class PlayerAnimation : MonoBehaviour
         bool isFalling = _playerState.CurrentPlayerMovementState == PlayerMovementState.Falling;
         bool isGrounded = _playerState.IsGroundedState();
         bool isPlayingAction = actionHashes.Any(hash => _animator.GetBool(hash));
-
-
-
 
         //
         bool isJumpFallBlendValue = isJumping || isFalling;
@@ -84,6 +91,7 @@ public class PlayerAnimation : MonoBehaviour
 
         _animator.SetBool(hasGotHit, _playerStats.hasGotHit);
         _animator.SetBool(isAttackingHash, _playerInputActions.AttackInput);
+
         _animator.SetInteger(attackCountHashed, _weapon.AttackCount);
 
         _animator.SetBool(isInteractingHash, _playerInputActions.InteractInput);

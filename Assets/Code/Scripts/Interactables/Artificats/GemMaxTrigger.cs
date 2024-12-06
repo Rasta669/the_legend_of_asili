@@ -28,7 +28,7 @@ public class GemMaxTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
 
-            Invoke(nameof(HideHint), 0.5f);
+            Invoke(nameof(HideHint), 1f);
         }
     }
 

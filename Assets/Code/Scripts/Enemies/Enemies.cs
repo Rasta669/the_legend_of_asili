@@ -13,6 +13,8 @@ public class Enemies : MonoBehaviour
     private Vector3 velocity; // Movement velocity
     private bool isGrounded;
     private CharacterController characterController;
+    private EnemyStats enemyStats;
+
     private Transform[] pathPoints; // Store the individual path for this enemy
     public bool hasArrived;
 
@@ -39,7 +41,8 @@ public class Enemies : MonoBehaviour
         }
 
         characterController = GetComponent<CharacterController>();
-        if (characterController == null)
+        enemyStats = GetComponent<EnemyStats>();
+        if (characterController == null || enemyStats == null)
         {
             Debug.LogError("CharacterController component is missing on the enemy!");
             return;
@@ -51,6 +54,8 @@ public class Enemies : MonoBehaviour
 
     void Update()
     {
+
+        if (enemyStats == null || enemyStats.IsDead) return; // Stop if the enemy is dead
 
         // Check if we have a valid target
         if (pathPointIndex >= pathPoints.Length || target == null)

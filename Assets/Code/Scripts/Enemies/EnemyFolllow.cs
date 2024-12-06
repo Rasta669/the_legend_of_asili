@@ -1,4 +1,5 @@
 ///
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
@@ -16,6 +17,7 @@ public class EnemyFollow : MonoBehaviour
     public float hitDistance = 2f;
 
     private CharacterController characterController;
+    private EnemyStats enemyStats;
     private float outOfFieldTimer;
     private bool hasSeenPlayer = false;
     private Vector3 lastKnownPosition; // Last known position of the player
@@ -23,6 +25,8 @@ public class EnemyFollow : MonoBehaviour
     private Vector3 patrolDirection; // To store the direction when the player is lost
 
     public bool _hasTriggeredAttack = false;
+    public bool _hasPlayedAttackSound = false;
+    [SerializeField] private AudioClip attackSound;
 
     FieldOfView fov;
     Enemies enemy;
@@ -35,6 +39,7 @@ public class EnemyFollow : MonoBehaviour
         enemy = GetComponent<Enemies>();
         animator = GetComponentInChildren<Animator>();
         characterController = GetComponent<CharacterController>();
+        enemyStats = GetComponent<EnemyStats>();
 
         if (player == null)
             Debug.LogError("Player reference is missing!");
@@ -47,6 +52,8 @@ public class EnemyFollow : MonoBehaviour
 
     private void Update()
     {
+        if (enemyStats == null || enemyStats.IsDead) return; // Stop if the enemy is dead
+
         if (player == null) return;
 
         if (fov.canSeePlayer) // Player in view
@@ -112,11 +119,25 @@ public class EnemyFollow : MonoBehaviour
         // Smoothly blend to the attack animation
         animator.SetFloat("speed", Mathf.Lerp(animator.GetFloat("speed"), initialAttackBlend, Time.deltaTime * blendSpeed));
         animator.SetFloat("AttackParameter", Mathf.Lerp(animator.GetFloat("AttackParameter"), attackBlend, Time.deltaTime * blendSpeed));
+
         Debug.Log("Enemy attacking the player");
     }
 
-    public void TriggerAttackTrue() { _hasTriggeredAttack = true; }
-    public void TriggerAttackFalse() { _hasTriggeredAttack = false; }
+    public void TriggerAttackTrue()
+    {
+        _hasTriggeredAttack = true;
+        _hasPlayedAttackSound = true;
+        if (_hasPlayedAttackSound && !SoundManager.Instance.attackSoundSource.isPlaying)
+        {
+            SoundManager.Instance.PlayAttackSound(attackSound);
+        }
+    }
+    public void TriggerAttackFalse()
+    {
+        _hasTriggeredAttack = false;
+
+        _hasPlayedAttackSound = false;
+    }
 
     void HandlePlayerOutOfSight()
     {
