@@ -1773,6 +1773,7 @@ GameObject:
   - component: {fileID: 469984397}
   - component: {fileID: 469984396}
   - component: {fileID: 469984395}
+  - component: {fileID: 469984398}
   m_Layer: 5
   m_Name: SkipButton
   m_TagString: Untagged
@@ -1856,6 +1857,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 469984398}
+        m_TargetAssemblyTypeName: ButtonSoundEffect, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &469984396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1894,7 +1907,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 469984393}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
+--- !u!114 &469984398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 469984393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62bff41f14ccf854b9f1738d728130b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonClickSound: {fileID: 8300000, guid: 17295f617cf9d4347a365ef6bb13c865, type: 3}
+--- !u!1 &531557321
+=======
 --- !u!1 &470845071
+>>>>>>> ec79e72d0722dca75695c6de4037313c491638f8
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
