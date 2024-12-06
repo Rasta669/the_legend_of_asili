@@ -8,6 +8,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource, effectsSource;
     [SerializeField] public AudioSource playerFootStepSource; // players footsteps
     [SerializeField] public AudioSource enemyFootStepSource; // enemy footsteps
+    [SerializeField] public AudioSource interactableAudioSource; // enemy footsteps
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -62,6 +63,10 @@ public class SoundManager : MonoBehaviour
     public void PlaySound(AudioClip clip)
     {
         effectsSource.PlayOneShot(clip);
+    }
+    public void PlayPortalSound(AudioClip clip)
+    {
+        interactableAudioSource.PlayOneShot(clip);
     }
 
     public void PlayerFootStepSound(AudioClip _audioClip)

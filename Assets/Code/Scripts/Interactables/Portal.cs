@@ -7,6 +7,7 @@ public class Portal : MonoBehaviour, IInteractable
     [SerializeField] private GameObject _prevLevel;
     [SerializeField] private GameObject _nextLevel;
     [SerializeField] private bool _isLastPortal;
+    [SerializeField] private AudioClip teleportSound; // teleport sound
     private GameObject _player; // reference player
 
 
@@ -43,6 +44,11 @@ public class Portal : MonoBehaviour, IInteractable
 
     private void TeleportPlayer()
     {
+        if (teleportSound != null && !SoundManager.Instance.interactableAudioSource.isPlaying)
+        {
+            SoundManager.Instance.interactableAudioSource.pitch = 0.7f; // Normal pitch for running
+            SoundManager.Instance.PlaySound(teleportSound);
+        }
         if (_player != null)
         {
             _player.transform.position = _newSpawnLocation.position;
@@ -73,7 +79,7 @@ public class Portal : MonoBehaviour, IInteractable
             {
                 hintTextManager.ShowHint("E to Activate");
             }
-            if (CanActivatePortal() && _isLastPortal)
+            else if (CanActivatePortal() && _isLastPortal)
             {
                 hintTextManager.ShowHint("Locked (Final Portal)");
             }
