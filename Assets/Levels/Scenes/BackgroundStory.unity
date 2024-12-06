@@ -3505,7 +3505,7 @@ MonoBehaviour:
   - {fileID: 70270800}
   - {fileID: 1842353988}
   fadeDuration: 1
-  delayBetweenTexts: 2
+  delayBetweenTexts: 3
   waitTimeAfterDisplay: 3
   gameSceneName: UIScene
 --- !u!4 &889143278

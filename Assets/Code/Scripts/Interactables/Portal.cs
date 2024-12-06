@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Portal : MonoBehaviour, IInteractable
 {
@@ -33,6 +34,8 @@ public class Portal : MonoBehaviour, IInteractable
             }
             else
             {
+                PlayPortalSound();
+                SceneManager.LoadScene(SceneManager.sceneCount - 1); // load the last scene
                 Debug.Log("This is the last level!");
             }
         }
@@ -41,14 +44,17 @@ public class Portal : MonoBehaviour, IInteractable
             GemsManager.Instance.CannotActivatePortalFeedBack(gameObject);
         }
     }
-
-    private void TeleportPlayer()
+    void PlayPortalSound()
     {
         if (teleportSound != null && !SoundManager.Instance.interactableAudioSource.isPlaying)
         {
             SoundManager.Instance.interactableAudioSource.pitch = 0.7f; // Normal pitch for running
             SoundManager.Instance.PlaySound(teleportSound);
         }
+    }
+    private void TeleportPlayer()
+    {
+        PlayPortalSound();
         if (_player != null)
         {
             _player.transform.position = _newSpawnLocation.position;

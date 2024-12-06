@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -73,5 +74,6 @@ public class PlayerStats : MonoBehaviour
         // play death sound
         // activate death screen
         Debug.Log("You're dead...");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
