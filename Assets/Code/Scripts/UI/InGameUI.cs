@@ -82,6 +82,6 @@ public class InGameUI : MonoBehaviour
     {
         // Return to the main UI or quit the application
         Time.timeScale = 1.0f;  // Ensure time is resumed
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
