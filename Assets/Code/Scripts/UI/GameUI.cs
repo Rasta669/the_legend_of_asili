@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] GameObject startCanvas;
+   
     void Start()
     {
         startCanvas.SetActive(true);
@@ -24,4 +25,9 @@ public class GameUI : MonoBehaviour
         Application.Quit();
         #endif
     }
+
+   
+
 }
+
+
