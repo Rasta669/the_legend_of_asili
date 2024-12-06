@@ -6,6 +6,9 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
     [SerializeField] private AudioSource musicSource, effectsSource;
+    [SerializeField] public AudioSource playerFootStepSource; // players footsteps
+    [SerializeField] public AudioSource enemyFootStepSource; // enemy footsteps
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -56,9 +59,26 @@ public class SoundManager : MonoBehaviour
     }
 
 
-    public void playSound(AudioClip clip)
+    public void PlaySound(AudioClip clip)
     {
         effectsSource.PlayOneShot(clip);
+    }
+
+    public void PlayerFootStepSound(AudioClip _audioClip)
+    {
+        if (playerFootStepSource != null)
+        {
+
+            playerFootStepSource.PlayOneShot(_audioClip);
+        }
+    }
+    public void EnemyFootStepSound(AudioClip _audioClip)
+    {
+
+        if (enemyFootStepSource != null)
+        {
+            enemyFootStepSource.PlayOneShot(_audioClip);
+        }
     }
 
     public void ToggleMusic()

@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _maxHealth;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private AudioClip hirtSound; // hit audio
 
 
     private float _currentHealth;
@@ -47,6 +48,10 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(int amount)
     {
         hasGotHit = true; Debug.Log("Player has got hit on...");
+        if (hirtSound != null)
+        {
+            SoundManager.Instance.PlaySound(hirtSound);
+        }
 
         _currentHealth -= amount;
         _healthBar.SetSlider(_currentHealth);

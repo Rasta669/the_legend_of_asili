@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
     [Header("COMPONENTS")]
     [SerializeField] private CharacterController _characterController;
     [SerializeField] private Camera _playerCamera;
+    [SerializeField] private AudioClip m_RunningAudioClip; // run audio
+
     public float RotationMismatch { get; private set; } = 0f;
     public bool IsRotatingToTarget { get; private set; } = false;
 
@@ -70,6 +72,8 @@ public class PlayerController : MonoBehaviour
         UpdateMovementState();
         HandleVerticalMovement();
         HandleLateralMovement();
+
+        PlayFootSteps();
     }
 
 
@@ -77,6 +81,30 @@ public class PlayerController : MonoBehaviour
     {
         UpdateCameraRotation();
     }
+    private void PlayFootSteps()
+    {
+        if (!SoundManager.Instance.playerFootStepSource.isPlaying)
+
+        {
+            if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Walking)
+            //  && _playerState.CurrentPlayerMovementState != PlayerMovementState.Sprinting
+            {
+                // When not sprinting, reduce the pitch to make it sound like walking
+                SoundManager.Instance.playerFootStepSource.pitch = 0.7f; // Lower pitch for a slower, walking-like sound
+                SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
+            }
+            else if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting)
+            {
+                SoundManager.Instance.playerFootStepSource.pitch = 1f; // Normal pitch for running
+                SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
+            }
+            else
+            {
+                SoundManager.Instance.enemyFootStepSource.Stop();
+            }
+        }
+    }
+
 
     private void UpdateCameraRotation()
     {

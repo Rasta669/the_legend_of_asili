@@ -8,6 +8,8 @@ public class EnemyStats : MonoBehaviour
     [SerializeField] private int _testAmount;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private TextMeshProUGUI _healthText;
+    [SerializeField] private AudioClip hirtSound; // hit audio
+
 
 
     private float _currentHealth;
@@ -48,6 +50,11 @@ public class EnemyStats : MonoBehaviour
     public void TakeDamage(int amount)
     {
         _animator.SetTrigger(_hashedGotHit);
+        if (hirtSound != null)
+        {
+            SoundManager.Instance.PlaySound(hirtSound);
+        }
+        
         _currentHealth -= amount;
         _healthBar.SetSlider(_currentHealth);
     }
