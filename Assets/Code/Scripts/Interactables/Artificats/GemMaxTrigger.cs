@@ -14,9 +14,31 @@ public class GemMaxTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+            if (hintTextManager != null)
+            {
+                hintTextManager.ShowHint("Collect the Artifacts");
+            }
             Debug.Log($"Collect {_gemCount} gems for this level.");
             GemsManager.Instance.SetMaxGems(_gemCount);
-            Destroy(gameObject, 0.5f);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+
+            Invoke(nameof(HideHint), 0.5f);
+        }
+    }
+
+    private void HideHint()
+    {
+        Destroy(gameObject);
+        HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
+        if (hintTextManager != null)
+        {
+            hintTextManager.HideHint();
         }
     }
 }

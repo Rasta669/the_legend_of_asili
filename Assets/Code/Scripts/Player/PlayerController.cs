@@ -83,24 +83,27 @@ public class PlayerController : MonoBehaviour
     }
     private void PlayFootSteps()
     {
-        if (!SoundManager.Instance.playerFootStepSource.isPlaying)
-
+        if (SoundManager.Instance != null)
         {
-            if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Walking)
-            //  && _playerState.CurrentPlayerMovementState != PlayerMovementState.Sprinting
+            if (!SoundManager.Instance.playerFootStepSource.isPlaying)
+
             {
-                // When not sprinting, reduce the pitch to make it sound like walking
-                SoundManager.Instance.playerFootStepSource.pitch = 0.7f; // Lower pitch for a slower, walking-like sound
-                SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
-            }
-            else if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting)
-            {
-                SoundManager.Instance.playerFootStepSource.pitch = 1f; // Normal pitch for running
-                SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
-            }
-            else
-            {
-                SoundManager.Instance.enemyFootStepSource.Stop();
+                if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Walking)
+                //  && _playerState.CurrentPlayerMovementState != PlayerMovementState.Sprinting
+                {
+                    // When not sprinting, reduce the pitch to make it sound like walking
+                    SoundManager.Instance.playerFootStepSource.pitch = 0.7f; // Lower pitch for a slower, walking-like sound
+                    SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
+                }
+                else if (IsMovingLateral() && _playerState.CurrentPlayerMovementState == PlayerMovementState.Sprinting)
+                {
+                    SoundManager.Instance.playerFootStepSource.pitch = 1f; // Normal pitch for running
+                    SoundManager.Instance.PlayerFootStepSound(m_RunningAudioClip);
+                }
+                else
+                {
+                    SoundManager.Instance.enemyFootStepSource.Stop();
+                }
             }
         }
     }
