@@ -26,9 +26,9 @@ public class PlayerAnimation : MonoBehaviour
     private static int rotationMismatchHash = Animator.StringToHash("rotationMismatch");
 
     // action  params
+    private static int hasGotHit = Animator.StringToHash("GotHit");
     private static int isAttackingHash = Animator.StringToHash("isAttacking");
     private static int attackCountHashed = Animator.StringToHash("attackCount");
-
     private static int isInteractingHash = Animator.StringToHash("isInteracting");
     private static int isPlayingActionHash = Animator.StringToHash("isPlayingAction");
     private int[] actionHashes;
@@ -36,6 +36,7 @@ public class PlayerAnimation : MonoBehaviour
     // 
     private Vector3 _currentBlendInput = Vector3.zero;
     private MeleeWeapon _weapon;
+    private PlayerStats _playerStats;
     // methods
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class PlayerAnimation : MonoBehaviour
         _playerState = GetComponent<PlayerState>();
         _playerController = GetComponent<PlayerController>();
         _playerInputActions = GetComponent<PlayerInputActions>();
+        _playerStats = GetComponent<PlayerStats>();
         _weapon = GetComponentInChildren<MeleeWeapon>();
 
         actionHashes = new int[] { isInteractingHash };
@@ -80,6 +82,7 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetBool(isFallingHash, isFalling);
         _animator.SetBool(isRotatingToTargetHash, _playerController.IsRotatingToTarget);
 
+        _animator.SetBool(hasGotHit, _playerStats.hasGotHit);
         _animator.SetBool(isAttackingHash, _playerInputActions.AttackInput);
         _animator.SetInteger(attackCountHashed, _weapon.AttackCount);
 

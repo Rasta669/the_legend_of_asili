@@ -5,12 +5,14 @@ public class PlayerStats : MonoBehaviour
 {
     // ATTRIBUTES
     [SerializeField] private float _maxHealth;
-    [SerializeField] private int _testAmount;
     [SerializeField] private HealthBar _healthBar;
     [SerializeField] private TextMeshProUGUI _healthText;
 
 
     private float _currentHealth;
+
+    private Animator _animator;
+    public bool hasGotHit = false;
 
 
     // STARTUP
@@ -44,8 +46,14 @@ public class PlayerStats : MonoBehaviour
     }
     public void TakeDamage(int amount)
     {
+        hasGotHit = true; Debug.Log("Player has got hit on...");
+
         _currentHealth -= amount;
         _healthBar.SetSlider(_currentHealth);
+    }
+    public void HasGotHitOff()
+    {
+        hasGotHit = false; Debug.Log("Player has got hit off...");
     }
 
     public void Heal(int amount)

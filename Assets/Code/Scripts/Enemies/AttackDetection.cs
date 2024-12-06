@@ -54,6 +54,7 @@ public class AttackDetection : MonoBehaviour
     // Trigger collision detection for damage application
     private void OnTriggerEnter(Collider other)
     {
+        _enemyFollow.TriggerAttackFalse();
         // Check if it's the enemy and the damage hasn't been applied yet
         if (other.CompareTag("Player") && !hasDamaged)
         {
@@ -63,7 +64,6 @@ public class AttackDetection : MonoBehaviour
                 playerStats.TakeDamage(damageAmount);
                 hasDamaged = true; // Set the flag to prevent multiple damage applications
                 DisableWeaponCollider(); // Immediately disable the collider after damage
-                _enemyFollow.TriggerAttackFalse();
             }
             else
             {
