@@ -30,12 +30,12 @@ public class Portal : MonoBehaviour, IInteractable
             GemsManager.Instance.CanActivatePortalFeedBack(gameObject);
             if (!_isLastPortal)
             {
-                TeleportPlayer();
+                LevelsHandler();
             }
-            else
+            else if (_isLastPortal)
             {
                 PlayPortalSound();
-                SceneManager.LoadScene(SceneManager.sceneCount - 1); // load the last scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); // load the last scene
                 Debug.Log("This is the last level!");
             }
         }
@@ -64,14 +64,16 @@ public class Portal : MonoBehaviour, IInteractable
 
     private void LevelsHandler()
     {
+
+        if (_nextLevel != null)
+        {
+            _nextLevel.SetActive(true);
+        }
+        TeleportPlayer();
         // we wont do it here: Just remember to set all levels inactive except Level1. 
         if (_prevLevel != null)
         {
             _prevLevel.SetActive(false);
-        }
-        if (_nextLevel != null)
-        {
-            _nextLevel.SetActive(true);
         }
     }
 

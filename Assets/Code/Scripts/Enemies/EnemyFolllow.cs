@@ -1,5 +1,3 @@
-///
-using UnityEditor.ShaderGraph;
 using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
