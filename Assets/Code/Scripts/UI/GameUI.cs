@@ -13,8 +13,8 @@ public class GameUI : MonoBehaviour
     public void StartGame()
     {
         // SceneManager.LoadScene("TestArea");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         startCanvas.SetActive(false); 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()

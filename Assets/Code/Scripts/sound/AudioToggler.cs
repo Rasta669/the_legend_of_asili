@@ -48,13 +48,13 @@ public class AudioToggler : MonoBehaviour
         if (toggleMusic)
         {
             Debug.Log("Music toggle clicked");
-            SoundManager.Instance.ToggleMusic();
+            if(SoundManager.Instance != null) SoundManager.Instance.ToggleMusic();
         }
 
         if (toggleEffects)
         {
             Debug.Log("Effects toggle clicked");
-            SoundManager.Instance.ToggleEffects();
+            if(SoundManager.Instance != null) SoundManager.Instance.ToggleEffects();
         }
     }
 }
