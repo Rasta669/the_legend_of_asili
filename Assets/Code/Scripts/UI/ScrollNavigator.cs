@@ -118,6 +118,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.InputSystem;
 
 public class ScrollNavigator : MonoBehaviour
 {
@@ -126,6 +127,14 @@ public class ScrollNavigator : MonoBehaviour
     public float scrollSpeed = 10f;
     private int currentIndex = 0;
     private RectTransform[] options;
+    private PlayerControls playerControls;
+
+    private void Awake()
+    {
+        playerControls = new PlayerControls();
+        playerControls.UI.Navigate.Enable();
+        playerControls.UI.Navigate.performed += OnNavigatePerformed;
+    }
 
     private void Start()
     {
@@ -146,14 +155,15 @@ public class ScrollNavigator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            Navigate(-1);
-        }
-        else if (Input.GetKeyDown(KeyCode.S))
-        {
-            Navigate(1);
-        }
+        //if (Input.GetKeyDown(KeyCode.W))
+        //{
+        //    Navigate(-1);
+        //}
+        //else if (Input.GetKeyDown(KeyCode.S))
+        //{
+        //    Navigate(1);
+        //}
+        //playerControls.UI.Navigate.performed += OnNavigatePerformed;
     }
 
     private void Navigate(int direction)
@@ -167,6 +177,30 @@ public class ScrollNavigator : MonoBehaviour
             ScrollToOption(currentIndex);
         }
     }
+
+    //private void OnNavigatePerformed(InputAction.CallbackContext context)
+    //{    
+    //    if (context.performed)
+    //    {
+    //        int input = context.ReadValue<int>();
+    //        Navigate(input);
+    //    }
+    //}
+
+    private void OnNavigatePerformed(InputAction.CallbackContext context)
+    {
+        Vector2 input = context.ReadValue<Vector2>(); // Read the Vector2 input
+
+        if (input.y > 0.1f) // Check if the input is moving up
+        {
+            Navigate(-1); // Move up
+        }
+        else if (input.y < -0.1f) // Check if the input is moving down
+        {
+            Navigate(1); // Move down
+        }
+    }
+
 
     private void HighlightOption(int index)
     {
