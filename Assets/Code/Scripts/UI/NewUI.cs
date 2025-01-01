@@ -17,7 +17,6 @@ public class NewUI : MonoBehaviour
     Button Language;
     VisualElement AudioMenu;
     VisualElement VideoMenu;
-    //VisualElement GameplayMenu;
     VisualElement LanguageMenu;
 
     private void Awake()
@@ -36,7 +35,6 @@ public class NewUI : MonoBehaviour
         AudioMenu = UIDocument.rootVisualElement.Q<VisualElement>("AudioMenu");
         LanguageMenu = UIDocument.rootVisualElement.Q<VisualElement>("LanguageMenu");
         VideoMenu = UIDocument.rootVisualElement.Q<VisualElement>("VideoMenu");
-
     }
 
     void Start()
@@ -56,9 +54,49 @@ public class NewUI : MonoBehaviour
         LanguageMenu.visible = false;
     }
 
+    void HighlightButton(Button button)
+    {
+        // Reset border width for all buttons
+        ResetButtonBorders();
+
+        // Set border width for the clicked button
+        button.style.borderTopWidth = 12;
+        button.style.borderRightWidth = 12;
+        button.style.borderBottomWidth = 12;
+        button.style.borderLeftWidth = 12;
+    }
+
+    void ResetButtonBorders()
+    {
+        // Reset border width for all buttons
+        Audio.style.borderTopWidth = 0;
+        Audio.style.borderRightWidth = 0;
+        Audio.style.borderBottomWidth = 0;
+        Audio.style.borderLeftWidth = 0;
+
+        Video.style.borderTopWidth = 0;
+        Video.style.borderRightWidth = 0;
+        Video.style.borderBottomWidth = 0;
+        Video.style.borderLeftWidth = 0;
+
+        Gameplay.style.borderTopWidth = 0;
+        Gameplay.style.borderRightWidth = 0;
+        Gameplay.style.borderBottomWidth = 0;
+        Gameplay.style.borderLeftWidth = 0;
+
+        Controls.style.borderTopWidth = 0;
+        Controls.style.borderRightWidth = 0;
+        Controls.style.borderBottomWidth = 0;
+        Controls.style.borderLeftWidth = 0;
+
+        Language.style.borderTopWidth = 0;
+        Language.style.borderRightWidth = 0;
+        Language.style.borderBottomWidth = 0;
+        Language.style.borderLeftWidth = 0;
+    }
+
     void NewGame(ClickEvent clk)
     {
-        // Load a new scene here
         Debug.Log("New game!");
     }
 
@@ -75,33 +113,48 @@ public class NewUI : MonoBehaviour
         Application.Quit();
     }
 
-    void GameAudio(ClickEvent clk) {
+    void GameAudio(ClickEvent clk)
+    {
         Debug.Log("Audio...");
+        HighlightButton(Audio);
         AudioMenu.visible = true;
         VideoMenu.visible = false;
         LanguageMenu.visible = false;
-
     }
 
-    void GameVideo(ClickEvent clk) {
+    void GameVideo(ClickEvent clk)
+    {
         Debug.Log("Video...");
+        HighlightButton(Video);
         AudioMenu.visible = false;
         VideoMenu.visible = true;
         LanguageMenu.visible = false;
     }
 
-    void GameControls(ClickEvent clk) {
+    void GameControls(ClickEvent clk)
+    {
         Debug.Log("Controls...");
+        HighlightButton(Controls);
+        AudioMenu.visible = false;
+        VideoMenu.visible = false;
+        LanguageMenu.visible = false;
     }
 
-    void GameLanguage(ClickEvent clk) {
+    void GameLanguage(ClickEvent clk)
+    {
         Debug.Log("Language...");
+        HighlightButton(Language);
         AudioMenu.visible = false;
         VideoMenu.visible = false;
         LanguageMenu.visible = true;
     }
 
-    void GamePLay(ClickEvent lk) {
+    void GamePLay(ClickEvent clk)
+    {
         Debug.Log("Gameplay...");
+        HighlightButton(Gameplay);
+        AudioMenu.visible = false;
+        VideoMenu.visible = false;
+        LanguageMenu.visible = false;
     }
 }
