@@ -1,0 +1,89 @@
+.header {
+    font-size: 59px;
+    -unity-text-align: upper-center;
+    color: rgb(164, 150, 150);
+}
+
+.button {
+    background-color: rgba(101, 88, 88, 0.23);
+    color: rgb(190, 182, 182);
+    align-self: center;
+    font-size: 32px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    top: 451px;
+}
+
+.menuHeader {
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+    font-size: 34px;
+    background-color: rgb(22, 4, 4);
+    -unity-background-image-tint-color: rgb(70, 63, 63);
+    height: 62px;
+    width: 393px;
+}
+
+.button:hover {
+    -unity-background-image-tint-color: rgba(101, 61, 61, 0.67);
+    transition-duration: 0.35s;
+    transition-timing-function: ease-in;
+    background-color: rgba(63, 39, 39, 0.82);
+}
+
+.headerColumn {
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+}
+
+.submenuHeader {
+    width: 395px;
+    height: 407px;
+    max-width: 544px;
+    max-height: -1472px;
+    overflow: hidden;
+    background-color: rgb(255, 225, 225);
+    top: auto;
+    min-height: 1px;
+}
+
+.menuHeader {
+    -unity-text-align: upper-center;
+    -unity-font-style: bold;
+    font-size: 34px;
+    background-color: rgb(22, 4, 4);
+    -unity-background-image-tint-color: rgb(70, 63, 63);
+    height: 62px;
+    width: 393px;
+}
+
+.column {
+    background-color: rgb(255, 255, 255);
+    height: 1087px;
+}
+
+.slider {
+    width: 477px;
+    min-height: -109px;
+    display: none;
+}
+
+.unity-base-slider--horizontal {
+    right: 20px;
+    flex-shrink: 0;
+}
+
+.unity-slider {
+    opacity: 1;
+}
+
+.slider .unity-slider__tracker {
+    margin-left: 20px;
+}
+
+.slider .unity-slider__label {
+    margin-left: -10px;
+    color: rgb(164, 117, 117);
+}
