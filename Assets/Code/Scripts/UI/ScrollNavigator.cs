@@ -122,6 +122,8 @@ public class ScrollNavigator : MonoBehaviour
             }
         }
 
+
+
         // Ensure the EventSystem is active and set the selected GameObject
         if (EventSystem.current != null)
         {
