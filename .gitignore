@@ -87,4 +87,5 @@ crashlytics-build.properties
 
 # add extras
 /[Aa]ssets/ASSETSTORE_PACKAGES/
-/[Aa]ssets/TerrainSampleAssets/
+/[Aa]ssets/Mine/
+/[Aa]ssets/TerrainSampleAssets
