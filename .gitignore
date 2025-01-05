@@ -9,7 +9,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-Assets/Code/Scripts/Enemies/FieldOfView2D.cs
+/Assets/Code/Scripts/Enemies/FieldOfView2D.cs
+/Assets/TerrainSampleAssets
+
+
+
 
 
 
