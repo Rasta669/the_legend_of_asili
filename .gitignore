@@ -9,7 +9,11 @@
 /[Bb]uilds/
 /[Ll]ogs/
 /[Uu]ser[Ss]ettings/
-Assets/Code/Scripts/Enemies/FieldOfView2D.cs
+/Assets/Code/Scripts/Enemies/FieldOfView2D.cs
+/Assets/TerrainSampleAssets
+
+
+
 
 
 
@@ -83,3 +87,5 @@ crashlytics-build.properties
 
 # add extras
 /[Aa]ssets/ASSETSTORE_PACKAGES/
+/[Aa]ssets/Mine/
+/[Aa]ssets/TerrainSampleAssets

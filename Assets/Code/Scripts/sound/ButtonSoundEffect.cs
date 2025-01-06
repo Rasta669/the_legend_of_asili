@@ -6,9 +6,7 @@ public class ButtonSoundEffect : MonoBehaviour
 
     public void OnButtonClick()
     {
-        SoundManager.Instance.PlaySound(buttonClickSound);
-
-        // Add additional logic for the button here
+        if (SoundManager.Instance != null) SoundManager.Instance.PlaySound(buttonClickSound);
     }
 }
 

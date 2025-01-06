@@ -7,8 +7,14 @@ public class GemMaxTrigger : MonoBehaviour
 
     private void Start()
     {
-        _gemCount = _gemsToCollect.transform.childCount;
+        gameObject.SetActive(true);
+        if (_gemsToCollect != null)
+        {
+            _gemCount = _gemsToCollect.transform.childCount;
+            GemsManager.Instance.SetMaxGems(_gemCount); // Initialize GemsToCollect here
+        }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,7 +40,7 @@ public class GemMaxTrigger : MonoBehaviour
 
     private void HideHint()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false); // Deactivate instead of destroy
         HintTextManager hintTextManager = FindFirstObjectByType<HintTextManager>();
         if (hintTextManager != null)
         {
