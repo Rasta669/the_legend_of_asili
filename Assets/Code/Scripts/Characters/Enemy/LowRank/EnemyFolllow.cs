@@ -1,3 +1,5 @@
+//using System;
+//Gravity issues
 using UnityEngine;
 
 public class EnemyFollow : MonoBehaviour
@@ -8,8 +10,10 @@ public class EnemyFollow : MonoBehaviour
 
     [SerializeField] float rotationSpeed = 5f;
     [SerializeField] float runBlend = 1f;
-    [SerializeField] static float attackBlend = 1f;
-    [SerializeField] static float initialAttackBlend = 0f;
+    [SerializeField] float stopBlend = 0f;
+    [SerializeField] static float attackBlend;
+    [SerializeField] float maxAttackBlend = 1f;
+    [SerializeField] static float initialAttackBlend = 0;
     [SerializeField] float outOfFieldCountdown = 3f;
     [SerializeField] float blendSpeed = 5f; // Speed at which animations blend
     public float hitDistance = 2f;
@@ -21,6 +25,7 @@ public class EnemyFollow : MonoBehaviour
     private Vector3 lastKnownPosition; // Last known position of the player
     private bool isSearching = false;
     private Vector3 patrolDirection; // To store the direction when the player is lost
+    float attackBlendTimer = 0.0f;
 
     public bool _hasTriggeredAttack = false;
     public bool _hasPlayedAttackSound = false;
@@ -66,17 +71,22 @@ public class EnemyFollow : MonoBehaviour
 
             if (distanceToPlayer <= hitDistance)
             {
+                //Debug.Log("Close to the player");
+                animator.SetFloat("Speed", 0);
                 FacePlayer();
+                //attackBlend = Random.Range(initialAttackBlend, attackBlend);
                 AttackPlayer();
             }
             else
             {
+                animator.SetBool("ToAttack", false);
                 FacePlayer();
                 FollowPlayer();
             }
         }
         else if (hasSeenPlayer) // Player out of sight
         {
+            animator.SetBool("ToAttack", false);
             HandlePlayerOutOfSight();
             enemy.enabled = true;
         }
@@ -90,35 +100,57 @@ public class EnemyFollow : MonoBehaviour
         characterController.Move(direction * speed * Time.deltaTime);
 
         // Smoothly blend to the running animation
-        float currentSpeed = animator.GetFloat("speed");
+        float currentSpeed = animator.GetFloat("Speed");
 
-        if (!SoundManager.Instance.enemyFootStepSource.isPlaying)
+        //if (!SoundManager.Instance.enemyFootStepSource.isPlaying)
 
-        {
-            if (currentSpeed >= 1)
-            {
-                // When not sprinting, reduce the pitch to make it sound like walking
-                SoundManager.Instance.enemyFootStepSource.pitch = 1f; // Normal pitch for running
-                SoundManager.Instance.EnemyFootStepSound(m_RunningAudioClip);
-            }
-            else
-            {
-                SoundManager.Instance.enemyFootStepSource.Stop();
-            }
-        }
-        animator.SetFloat("speed", Mathf.Lerp(currentSpeed, runBlend, Time.deltaTime * blendSpeed));
-        animator.SetFloat("AttackParameter", Mathf.Lerp(animator.GetFloat("AttackParameter"), initialAttackBlend, Time.deltaTime * blendSpeed));
+        //{
+        //    if (currentSpeed >= 1)
+        //    {
+        //        // When not sprinting, reduce the pitch to make it sound like walking
+        //        SoundManager.Instance.enemyFootStepSource.pitch = 1f; // Normal pitch for running
+        //        SoundManager.Instance.EnemyFootStepSound(m_RunningAudioClip);
+        //    }
+        //    else
+        //    {
+        //        SoundManager.Instance.enemyFootStepSource.Stop();
+        //    }
+        //}
+        animator.SetFloat("Speed", Mathf.Lerp(currentSpeed, runBlend, Time.deltaTime * blendSpeed));
+        //animator.SetFloat("hitFactor", Mathf.Lerp(animator.GetFloat("hitFactor"), initialAttackBlend, Time.deltaTime * blendSpeed));
 
         Debug.Log("Enemy chasing the player");
     }
 
     void AttackPlayer()
     {
+        // Update the attack blend value every 3 seconds
+        attackBlendTimer += Time.deltaTime;
+        if (attackBlendTimer >= 3f)
+        {
+            attackBlend = Random.Range(initialAttackBlend, maxAttackBlend);
+            attackBlendTimer = 0f; // Reset the timer
+        }
+        if (attackBlend < 0.25)
+        {
+            attackBlend = 0;
+        }
+        else if (attackBlend >= 0.25f && attackBlend <= 0.75f)
+        {
+            attackBlend = 0.5f;
+        }
+        else
+        {
+            attackBlend = 1;
+        }
         // Smoothly blend to the attack animation
-        animator.SetFloat("speed", Mathf.Lerp(animator.GetFloat("speed"), initialAttackBlend, Time.deltaTime * blendSpeed));
-        animator.SetFloat("AttackParameter", Mathf.Lerp(animator.GetFloat("AttackParameter"), attackBlend, Time.deltaTime * blendSpeed));
-
-        Debug.Log("Enemy attacking the player");
+        //animator.SetFloat("Speed", Mathf.Lerp(animator.GetFloat("Speed"), stopBlend, Time.deltaTime * blendSpeed));
+        Debug.Log($"Enemy attacking the player with attackBlend: {attackBlend}");
+        animator.SetFloat("Speed", 0);
+        animator.SetBool("ToAttack", true);
+        animator.SetFloat("hitFactor", Mathf.Lerp(animator.GetFloat("hitFactor"), attackBlend, Time.deltaTime * blendSpeed));
+        
+        //Debug.Log("Enemy attacking the player");
     }
 
     public void TriggerAttackTrue()

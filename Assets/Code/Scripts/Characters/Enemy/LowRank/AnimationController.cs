@@ -5,6 +5,8 @@ public class AnimationController : MonoBehaviour
     private Animator animator;
     [SerializeField] private float blend = 0.5f;
     [SerializeField] private float stopBlend = 0.0f;
+    [SerializeField] private float walkBlend = 0.5f;
+    [SerializeField] private float runBlend = 1.0f;
 
     private FieldOfView fov;
     [SerializeField] private Enemies enemy; // Reference to the associated Enemies instance
@@ -35,16 +37,36 @@ public class AnimationController : MonoBehaviour
 
         if (!fov.canSeePlayer)
         {
-            animator.SetFloat("AttackParameter", 0.0f);
+            //idle
+            //animator.SetFloat("Speed", 0.0f);
+            BeIdle();   
+            // walking
             if (!enemy.hasArrived)
             {
-                animator.SetFloat("speed", blend);
+                //animator.SetFloat("Speed", blend);
+                Walk();
             }
             else
             {
-                animator.SetFloat("speed", stopBlend);
+                //animator.SetFloat("Speed", stopBlend);
+                BeIdle();
             }
         }
         // else logic for when fov.canSeePlayer is true can be added here
+    }
+
+    void BeIdle()
+    {
+        animator.SetFloat("Speed", 0.0f);
+    }
+
+    void Walk()
+    {
+        animator.SetFloat("Speed", walkBlend);
+    }
+
+    void Run()
+    {
+        animator.SetFloat("Speed", runBlend);
     }
 }
